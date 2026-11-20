@@ -1,0 +1,9 @@
+[[stack]]
+name = "bentopdf"
+[stack.config]
+server = "dragon"
+repo = "andreshungbz/homelab"
+branch = "main"
+run_directory = "stacks/bentopdf"
+file_paths = ["compose.yaml"]
+auto_update = true
