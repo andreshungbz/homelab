@@ -1,0 +1,15 @@
+services:
+  actualbudget:
+    image: docker.io/actualbudget/actual-server:latest
+    container_name: actualbudget
+    ports:
+      - "127.0.0.1:6212:5006"
+    volumes:
+      - ${DATA_DIR}/actualbudget:/data
+    healthcheck:
+      test: ["CMD-SHELL", "node scripts/health-check.js"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    restart: unless-stopped

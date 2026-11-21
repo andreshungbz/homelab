@@ -17,6 +17,18 @@ file_paths = ["compose.yaml"]
 
 ##
 
+[[stack]]
+name = "actualbudget"
+tags = ["tracking"]
+[stack.config]
+server = "dragon"
+auto_update = true
+repo = "andreshungbz/homelab"
+run_directory = "stacks/actualbudget"
+file_paths = ["compose.yaml"]
+
+##
+
 [[repo]]
 name = "homelab"
 [repo.config]
@@ -37,7 +49,7 @@ config.schedule = "Every day at 01:00"
 name = "Stage 1"
 enabled = true
 executions = [
-  { execution.type = "BackupCoreDatabase", execution.params = {}, enabled = true }
+  { execution.type = "BackupCoreDatabase", execution.params = {}, enabled = true },
 ]
 
 ##
@@ -52,7 +64,7 @@ config.schedule = "Every day at 03:00"
 name = "Stage 1"
 enabled = true
 executions = [
-  { execution.type = "GlobalAutoUpdate", execution.params.skip_auto_update = false, enabled = true }
+  { execution.type = "GlobalAutoUpdate", execution.params.skip_auto_update = false, enabled = true },
 ]
 
 ##
@@ -67,7 +79,7 @@ config.schedule = "Every day at 06:00"
 name = "Stage 1"
 enabled = true
 executions = [
-  { execution.type = "RotateAllServerKeys", execution.params = {}, enabled = true }
+  { execution.type = "RotateAllServerKeys", execution.params = {}, enabled = true },
 ]
 
 ##
