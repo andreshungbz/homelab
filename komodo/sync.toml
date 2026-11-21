@@ -87,15 +87,6 @@ repo = "andreshungbz/homelab"
 run_directory = "stacks/trek"
 file_paths = ["compose.yaml"]
 
-##
-
-[[repo]]
-name = "homelab"
-[repo.config]
-server = "dragon"
-builder = "dragon"
-git_account = "andreshungbz"
-repo = "andreshungbz/homelab"
 
 ##
 
@@ -120,6 +111,27 @@ auto_update = true
 repo = "andreshungbz/homelab"
 run_directory = "stacks/termix"
 file_paths = ["compose.yaml"]
+
+##
+
+[[stack]]
+name = "vikunja"
+tags = ["tracking"]
+[stack.config]
+server = "dragon"
+auto_update = true
+repo = "andreshungbz/homelab"
+run_directory = "stacks/vikunja"
+file_paths = ["compose.yaml"]
+##
+
+[[repo]]
+name = "homelab"
+[repo.config]
+server = "dragon"
+builder = "dragon"
+git_account = "andreshungbz"
+repo = "andreshungbz/homelab"
 
 ##
 
