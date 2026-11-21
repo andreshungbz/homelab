@@ -7,7 +7,7 @@ enabled = true
 
 [[stack]]
 name = "bentopdf"
-tags = ["tool"]
+tags = ["homelab"]
 [stack.config]
 server = "dragon"
 auto_update = true
@@ -19,7 +19,7 @@ file_paths = ["compose.yaml"]
 
 [[stack]]
 name = "actualbudget"
-tags = ["tracking"]
+tags = ["homelab"]
 [stack.config]
 server = "dragon"
 auto_update = true
@@ -31,7 +31,7 @@ file_paths = ["compose.yaml"]
 
 [[stack]]
 name = "adguardhome"
-tags = ["infrastructure"]
+tags = ["homelab"]
 [stack.config]
 server = "dragon"
 auto_update = true
@@ -43,7 +43,7 @@ file_paths = ["compose.yaml"]
 
 [[stack]]
 name = "glances"
-tags = ["infrastructure"]
+tags = ["homelab"]
 [stack.config]
 server = "dragon"
 auto_update = true
@@ -55,7 +55,7 @@ file_paths = ["compose.yaml"]
 
 [[stack]]
 name = "miniflux"
-tags = ["tool"]
+tags = ["homelab"]
 [stack.config]
 server = "dragon"
 auto_update = true
@@ -67,7 +67,7 @@ file_paths = ["compose.yaml"]
 
 [[stack]]
 name = "karakeep"
-tags = ["tool"]
+tags = ["homelab"]
 [stack.config]
 server = "dragon"
 auto_update = true
@@ -79,7 +79,7 @@ file_paths = ["compose.yaml"]
 
 [[stack]]
 name = "trek"
-tags = ["tracking"]
+tags = ["homelab"]
 [stack.config]
 server = "dragon"
 auto_update = true
@@ -92,7 +92,7 @@ file_paths = ["compose.yaml"]
 
 [[stack]]
 name = "uptimekuma"
-tags = ["infrastructure"]
+tags = ["homelab"]
 [stack.config]
 server = "dragon"
 auto_update = true
@@ -104,7 +104,7 @@ file_paths = ["compose.yaml"]
 
 [[stack]]
 name = "termix"
-tags = ["tool"]
+tags = ["homelab"]
 [stack.config]
 server = "dragon"
 auto_update = true
@@ -116,7 +116,7 @@ file_paths = ["compose.yaml"]
 
 [[stack]]
 name = "vikunja"
-tags = ["tracking"]
+tags = ["homelab"]
 [stack.config]
 server = "dragon"
 auto_update = true
@@ -128,7 +128,7 @@ file_paths = ["compose.yaml"]
 
 [[stack]]
 name = "paperlessngx"
-tags = ["tracking"]
+tags = ["homelab"]
 [stack.config]
 server = "dragon"
 auto_update = true
