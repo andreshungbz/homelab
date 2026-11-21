@@ -1,9 +1,88 @@
+[[server]]
+name = "dragon"
+[server.config]
+enabled = true
+
+##
+
 [[stack]]
 name = "bentopdf"
+tags = ["tool"]
 [stack.config]
 server = "dragon"
+auto_update = true
 repo = "andreshungbz/homelab"
-branch = "main"
 run_directory = "stacks/bentopdf"
 file_paths = ["compose.yaml"]
-auto_update = true
+
+##
+
+[[repo]]
+name = "homelab"
+[repo.config]
+server = "dragon"
+builder = "dragon"
+git_account = "andreshungbz"
+repo = "andreshungbz/homelab"
+
+##
+
+[[procedure]]
+name = "Backup Core Database"
+description = "Triggers the Core database backup at the scheduled time."
+tags = ["system"]
+config.schedule = "Every day at 01:00"
+
+[[procedure.config.stage]]
+name = "Stage 1"
+enabled = true
+executions = [
+  { execution.type = "BackupCoreDatabase", execution.params = {}, enabled = true }
+]
+
+##
+
+[[procedure]]
+name = "Global Auto Update"
+description = "Pulls and auto updates Stacks and Deployments using 'poll_for_updates' or 'auto_update'."
+tags = ["system"]
+config.schedule = "Every day at 03:00"
+
+[[procedure.config.stage]]
+name = "Stage 1"
+enabled = true
+executions = [
+  { execution.type = "GlobalAutoUpdate", execution.params.skip_auto_update = false, enabled = true }
+]
+
+##
+
+[[procedure]]
+name = "Rotate Server Keys"
+description = "Rotates all currently connected Server keys."
+tags = ["system"]
+config.schedule = "Every day at 06:00"
+
+[[procedure.config.stage]]
+name = "Stage 1"
+enabled = true
+executions = [
+  { execution.type = "RotateAllServerKeys", execution.params = {}, enabled = true }
+]
+
+##
+
+[[builder]]
+name = "dragon"
+[builder.config]
+type = "Server"
+params.servers = ["dragon"]
+
+##
+
+[[resource_sync]]
+name = "homelab-sync"
+[resource_sync.config]
+linked_repo = "homelab"
+resource_path = ["komodo/sync.toml"]
+managed = true
