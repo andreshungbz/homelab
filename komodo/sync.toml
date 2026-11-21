@@ -31,7 +31,7 @@ file_paths = ["compose.yaml"]
 
 [[stack]]
 name = "bentopdf"
-tags = ["homelab"]
+tags = ["homelab", "tool"]
 [stack.config]
 server = "dragon"
 auto_update = true
