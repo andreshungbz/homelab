@@ -29,6 +29,18 @@ file_paths = ["compose.yaml"]
 
 ##
 
+[[stack]]
+name = "adguardhome"
+tags = ["infrastructure"]
+[stack.config]
+server = "dragon"
+auto_update = true
+repo = "andreshungbz/homelab"
+run_directory = "stacks/adguardhome"
+file_paths = ["compose.yaml"]
+
+##
+
 [[repo]]
 name = "homelab"
 [repo.config]

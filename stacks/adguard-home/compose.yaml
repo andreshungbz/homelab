@@ -1,0 +1,14 @@
+services:
+  adguardhome:
+    image: docker.io/adguard/adguardhome:latest
+    container_name: adguardhome
+    ports:
+      - "127.0.0.1:6213:80"
+      - "53:53/tcp"
+      - "53:53/udp"
+    volumes:
+      - ${DATA_DIR}/adguardhome/work:/opt/adguardhome/work
+      - ${DATA_DIR}/adguardhome/conf:/opt/adguardhome/conf
+    environment:
+      TZ: ${TZ:-America/Belize}
+    restart: unless-stopped
