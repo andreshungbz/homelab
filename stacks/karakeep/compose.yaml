@@ -1,0 +1,42 @@
+services:
+  web:
+    image: ghcr.io/karakeep-app/karakeep:${KARAKEEP_VERSION:-release}
+    container_name: karakeep
+    ports:
+      - "127.0.0.1:6216:3000"
+    volumes:
+      - ${DATA_DIR}/karakeep/data:/data
+    environment:
+      MEILI_ADDR: http://meilisearch:7700
+      BROWSER_WEB_URL: http://chrome:9222
+      DATA_DIR: /data
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
+      MEILI_MASTER_KEY: ${MEILI_MASTER_KEY}
+      NEXTAUTH_URL: ${NEXTAUTH_URL}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+    depends_on:
+      - chrome
+      - meilisearch
+    restart: unless-stopped
+
+  chrome:
+    image: ghcr.io/karakeep-app/karakeep-chrome:release
+    container_name: karakeep-chrome
+    init: true
+    command:
+      - --disable-gpu
+      - --disable-dev-shm-usage
+      - --hide-scrollbars
+      - --disable-blink-features=AutomationControlled
+      - --window-size=1440,900
+    restart: unless-stopped
+
+  meilisearch:
+    image: docker.io/getmeili/meilisearch:v1.55.0
+    container_name: karakeep-meilisearch
+    volumes:
+      - ${DATA_DIR}/karakeep/meilisearch:/meili_data
+    environment:
+      MEILI_NO_ANALYTICS: "true"
+      MEILI_MASTER_KEY: ${MEILI_MASTER_KEY}
+    restart: unless-stopped
