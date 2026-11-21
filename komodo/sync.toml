@@ -138,6 +138,18 @@ file_paths = ["compose.yaml"]
 
 ##
 
+[[stack]]
+name = "homepage"
+tags = ["homelab"]
+[stack.config]
+server = "dragon"
+auto_update = true
+repo = "andreshungbz/homelab"
+run_directory = "stacks/homepage"
+file_paths = ["compose.yaml"]
+
+##
+
 [[repo]]
 name = "homelab"
 [repo.config]
