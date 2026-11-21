@@ -99,6 +99,18 @@ repo = "andreshungbz/homelab"
 
 ##
 
+[[stack]]
+name = "uptimekuma"
+tags = ["infrastructure"]
+[stack.config]
+server = "dragon"
+auto_update = true
+repo = "andreshungbz/homelab"
+run_directory = "stacks/uptimekuma"
+file_paths = ["compose.yaml"]
+
+##
+
 [[procedure]]
 name = "Backup Core Database"
 description = "Triggers the Core database backup at the scheduled time."
