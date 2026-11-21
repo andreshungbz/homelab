@@ -77,6 +77,18 @@ file_paths = ["compose.yaml"]
 
 ##
 
+[[stack]]
+name = "trek"
+tags = ["tracking"]
+[stack.config]
+server = "dragon"
+auto_update = true
+repo = "andreshungbz/homelab"
+run_directory = "stacks/trek"
+file_paths = ["compose.yaml"]
+
+##
+
 [[repo]]
 name = "homelab"
 [repo.config]

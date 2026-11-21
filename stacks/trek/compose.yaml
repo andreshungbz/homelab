@@ -1,0 +1,39 @@
+services:
+  app:
+    image: docker.io/mauriceboe/trek:latest
+    container_name: trek
+    ports:
+      - "127.0.0.1:6217:3000"
+    volumes:
+      - ${DATA_DIR}/trek/data:/app/data
+      - ${DATA_DIR}/trek/uploads:/app/uploads
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+      TZ: ${TZ:-America/Belize}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS}
+      APP_URL: ${APP_URL}
+      FORCE_HTTPS: "true"
+      TRUST_PROXY: "1"
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETUID
+      - SETGID
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp:noexec,nosuid,size=64m
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    restart: unless-stopped
