@@ -7,11 +7,15 @@ enabled = true
 
 [[stack]]
 name = "actualbudget"
-tags = ["homelab"]
+tags = ["app"]
 [stack.config]
 server = "dragon"
+links = [
+  "https://budget.coydog-matrix.ts.net",
+  "https://actualbudget.org"
+]
 auto_update = true
-repo = "andreshungbz/homelab"
+linked_repo = "homelab"
 run_directory = "stacks/actualbudget"
 file_paths = ["compose.yaml"]
 
@@ -19,11 +23,15 @@ file_paths = ["compose.yaml"]
 
 [[stack]]
 name = "adguardhome"
-tags = ["homelab"]
+tags = ["service"]
 [stack.config]
 server = "dragon"
+links = [
+  "https://dns.coydog-matrix.ts.net",
+  "https://adguard.com/en/adguard-home/overview.html"
+]
 auto_update = true
-repo = "andreshungbz/homelab"
+linked_repo = "homelab"
 run_directory = "stacks/adguardhome"
 file_paths = ["compose.yaml"]
 
@@ -31,11 +39,15 @@ file_paths = ["compose.yaml"]
 
 [[stack]]
 name = "bentopdf"
-tags = ["homelab", "tool"]
+tags = ["tool"]
 [stack.config]
 server = "dragon"
+links = [
+  "https://pdf.coydog-matrix.ts.net",
+  "https://www.bentopdf.com"
+]
 auto_update = true
-repo = "andreshungbz/homelab"
+linked_repo = "homelab"
 run_directory = "stacks/bentopdf"
 file_paths = ["compose.yaml"]
 
@@ -43,11 +55,15 @@ file_paths = ["compose.yaml"]
 
 [[stack]]
 name = "glances"
-tags = ["homelab"]
+tags = ["service"]
 [stack.config]
 server = "dragon"
+links = [
+  "https://monitor.coydog-matrix.ts.net",
+  "https://nicolargo.github.io/glances"
+]
 auto_update = true
-repo = "andreshungbz/homelab"
+linked_repo = "homelab"
 run_directory = "stacks/glances"
 file_paths = ["compose.yaml"]
 
@@ -55,11 +71,15 @@ file_paths = ["compose.yaml"]
 
 [[stack]]
 name = "homepage"
-tags = ["homelab"]
+tags = ["service"]
 [stack.config]
 server = "dragon"
+links = [
+  "https://dashboard.coydog-matrix.ts.net",
+  "https://gethomepage.dev"
+]
 auto_update = true
-repo = "andreshungbz/homelab"
+linked_repo = "homelab"
 run_directory = "stacks/homepage"
 file_paths = ["compose.yaml"]
 
@@ -67,11 +87,15 @@ file_paths = ["compose.yaml"]
 
 [[stack]]
 name = "karakeep"
-tags = ["homelab"]
+tags = ["app"]
 [stack.config]
 server = "dragon"
+links = [
+  "https://stash.coydog-matrix.ts.net",
+  "https://karakeep.com"
+]
 auto_update = true
-repo = "andreshungbz/homelab"
+linked_repo = "homelab"
 run_directory = "stacks/karakeep"
 file_paths = ["compose.yaml"]
 
@@ -79,11 +103,15 @@ file_paths = ["compose.yaml"]
 
 [[stack]]
 name = "miniflux"
-tags = ["homelab"]
+tags = ["app"]
 [stack.config]
 server = "dragon"
+links = [
+  "https://rss.coydog-matrix.ts.net",
+  "https://miniflux.app"
+]
 auto_update = true
-repo = "andreshungbz/homelab"
+linked_repo = "homelab"
 run_directory = "stacks/miniflux"
 file_paths = ["compose.yaml"]
 
@@ -91,6 +119,7 @@ file_paths = ["compose.yaml"]
 
 [[stack]]
 name = "mus-luc"
+tags = ["cloudflare"]
 [stack.config]
 server = "dragon"
 auto_update = true
@@ -101,11 +130,15 @@ run_directory = "/home/packet/Projects/mus-luc"
 
 [[stack]]
 name = "paperlessngx"
-tags = ["homelab"]
+tags = ["app"]
 [stack.config]
 server = "dragon"
+links = [
+  "https://papers.coydog-matrix.ts.net",
+  "https://docs.paperless-ngx.com"
+]
 auto_update = true
-repo = "andreshungbz/homelab"
+linked_repo = "homelab"
 run_directory = "stacks/paperlessngx"
 file_paths = ["compose.yaml"]
 
@@ -113,11 +146,15 @@ file_paths = ["compose.yaml"]
 
 [[stack]]
 name = "termix"
-tags = ["homelab"]
+tags = ["service"]
 [stack.config]
 server = "dragon"
+links = [
+  "https://terminal.coydog-matrix.ts.net",
+  "https://termix.site"
+]
 auto_update = true
-repo = "andreshungbz/homelab"
+linked_repo = "homelab"
 run_directory = "stacks/termix"
 file_paths = ["compose.yaml"]
 
@@ -125,23 +162,47 @@ file_paths = ["compose.yaml"]
 
 [[stack]]
 name = "trek"
-tags = ["homelab"]
+tags = ["app"]
 [stack.config]
 server = "dragon"
+links = [
+  "https://travel.coydog-matrix.ts.net",
+  "https://github.com/liketrek/TREK"
+]
 auto_update = true
-repo = "andreshungbz/homelab"
+linked_repo = "homelab"
 run_directory = "stacks/trek"
 file_paths = ["compose.yaml"]
 
 ##
 
 [[stack]]
-name = "uptimekuma"
-tags = ["homelab"]
+name = "trilium"
+tags = ["app"]
 [stack.config]
 server = "dragon"
+links = [
+  "https://knowledge.coydog-matrix.ts.net",
+  "https://triliumnotes.org"
+]
 auto_update = true
-repo = "andreshungbz/homelab"
+linked_repo = "homelab"
+run_directory = "stacks/trilium"
+file_paths = ["compose.yaml"]
+
+##
+
+[[stack]]
+name = "uptimekuma"
+tags = ["service"]
+[stack.config]
+server = "dragon"
+links = [
+  "https://status.coydog-matrix.ts.net",
+  "https://uptimekuma.co"
+]
+auto_update = true
+linked_repo = "homelab"
 run_directory = "stacks/uptimekuma"
 file_paths = ["compose.yaml"]
 
@@ -149,24 +210,16 @@ file_paths = ["compose.yaml"]
 
 [[stack]]
 name = "vikunja"
-tags = ["homelab"]
+tags = ["app"]
 [stack.config]
 server = "dragon"
+links = [
+  "https://todo.coydog-matrix.ts.net",
+  "https://vikunja.io"
+]
 auto_update = true
-repo = "andreshungbz/homelab"
+linked_repo = "homelab"
 run_directory = "stacks/vikunja"
-file_paths = ["compose.yaml"]
-
-##
-
-[[stack]]
-name = "trilium"
-tags = ["homelab"]
-[stack.config]
-server = "dragon"
-auto_update = true
-repo = "andreshungbz/homelab"
-run_directory = "stacks/trilium"
 file_paths = ["compose.yaml"]
 
 ##
@@ -174,8 +227,6 @@ file_paths = ["compose.yaml"]
 [[repo]]
 name = "homelab"
 [repo.config]
-server = "dragon"
-builder = "dragon"
 git_account = "andreshungbz"
 repo = "andreshungbz/homelab"
 
@@ -185,13 +236,13 @@ repo = "andreshungbz/homelab"
 name = "Backup Core Database"
 description = "Triggers the Core database backup at the scheduled time."
 tags = ["system"]
-config.schedule = "Every day at 01:00"
+config.schedule = "Every Sunday at 2:00 am"
 
 [[procedure.config.stage]]
-name = "Stage 1"
+name = "Backup"
 enabled = true
 executions = [
-  { execution.type = "BackupCoreDatabase", execution.params = {}, enabled = true },
+  { execution.type = "BackupCoreDatabase", execution.params = {}, enabled = true }
 ]
 
 ##
@@ -203,10 +254,27 @@ tags = ["system"]
 config.schedule = "Every day at 03:00"
 
 [[procedure.config.stage]]
-name = "Stage 1"
+name = "Update"
 enabled = true
 executions = [
-  { execution.type = "GlobalAutoUpdate", execution.params.skip_auto_update = false, enabled = true },
+  { execution.type = "GlobalAutoUpdate", execution.params.skip_auto_update = false, enabled = true }
+]
+
+##
+
+[[procedure]]
+name = "Prune Docker"
+tags = ["system"]
+config.schedule = "Every Sunday at 4:00 am"
+
+[[procedure.config.stage]]
+name = "Clean"
+enabled = true
+executions = [
+  { execution.type = "PruneContainers", execution.params.server = "dragon", enabled = true },
+  { execution.type = "PruneNetworks", execution.params.server = "dragon", enabled = true },
+  { execution.type = "PruneImages", execution.params.server = "dragon", enabled = true },
+  { execution.type = "None", execution.params = {}, enabled = true }
 ]
 
 ##
@@ -218,10 +286,10 @@ tags = ["system"]
 config.schedule = "Every day at 06:00"
 
 [[procedure.config.stage]]
-name = "Stage 1"
+name = "Rotate"
 enabled = true
 executions = [
-  { execution.type = "RotateAllServerKeys", execution.params = {}, enabled = true },
+  { execution.type = "RotateAllServerKeys", execution.params = {}, enabled = true }
 ]
 
 ##
@@ -235,7 +303,7 @@ params.servers = ["dragon"]
 ##
 
 [[resource_sync]]
-name = "homelab-sync"
+name = "komodo-sync"
 [resource_sync.config]
 linked_repo = "homelab"
 resource_path = ["komodo/sync.toml"]
