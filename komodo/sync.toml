@@ -219,4 +219,4 @@ name = "homelab-sync"
 linked_repo = "homelab"
 resource_path = ["komodo/sync.toml"]
 managed = true
-match_tags = ["system", "homelab"]
+match_tags = ["homelab"]
