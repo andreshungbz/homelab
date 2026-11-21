@@ -41,6 +41,18 @@ file_paths = ["compose.yaml"]
 
 ##
 
+[[stack]]
+name = "glances"
+tags = ["infrastructure"]
+[stack.config]
+server = "dragon"
+auto_update = true
+repo = "andreshungbz/homelab"
+run_directory = "stacks/glances"
+file_paths = ["compose.yaml"]
+
+##
+
 [[repo]]
 name = "homelab"
 [repo.config]

@@ -1,0 +1,26 @@
+services:
+  glances:
+    image: docker.io/nicolargo/glances:latest-full
+    container_name: glances
+    network_mode: host
+    pid: host
+    privileged: false
+    read_only: true
+    volumes:
+      - /:/rootfs:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /etc/os-release:/etc/os-release:ro
+      - ./glances.conf:/glances/conf/glances.conf:ro
+    tmpfs:
+      - /tmp
+    environment:
+      GLANCES_OPT: --bind 127.0.0.1 --port 6214 --browser -C /glances/conf/glances.conf -w --enable-mcp --enable-plugin smart
+      PYTHONPYCACHEPREFIX: /tmp/py_caches
+      TZ: ${TZ:-America/Belize}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6214/api/4/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: always
