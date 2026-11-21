@@ -2,7 +2,6 @@ name: bentopdf
 
 services:
   bentopdf:
-    container_name: bentopdf
     healthcheck:
       test: ['CMD', 'wget', '--spider', '-q', 'http://localhost:8080']
       interval: 30s
