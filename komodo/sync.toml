@@ -111,6 +111,18 @@ file_paths = ["compose.yaml"]
 
 ##
 
+[[stack]]
+name = "termix"
+tags = ["tool"]
+[stack.config]
+server = "dragon"
+auto_update = true
+repo = "andreshungbz/homelab"
+run_directory = "stacks/termix"
+file_paths = ["compose.yaml"]
+
+##
+
 [[procedure]]
 name = "Backup Core Database"
 description = "Triggers the Core database backup at the scheduled time."
