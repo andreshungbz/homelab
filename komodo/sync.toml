@@ -219,4 +219,3 @@ name = "homelab-sync"
 linked_repo = "homelab"
 resource_path = ["komodo/sync.toml"]
 managed = true
-ignore_resources = [{ type = "Stack", id = "mus-luc" }]
