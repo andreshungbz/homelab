@@ -93,6 +93,7 @@ file_paths = ["compose.yaml"]
 name = "mus-luc"
 [stack.config]
 server = "dragon"
+auto_update = true
 files_on_host = true
 run_directory = "/home/packet/Projects/mus-luc"
 
