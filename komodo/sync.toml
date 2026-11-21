@@ -53,6 +53,18 @@ file_paths = ["compose.yaml"]
 
 ##
 
+[[stack]]
+name = "miniflux"
+tags = ["tool"]
+[stack.config]
+server = "dragon"
+auto_update = true
+repo = "andreshungbz/homelab"
+run_directory = "stacks/miniflux"
+file_paths = ["compose.yaml"]
+
+##
+
 [[repo]]
 name = "homelab"
 [repo.config]
