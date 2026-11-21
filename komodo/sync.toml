@@ -166,7 +166,7 @@ tags = ["homelab"]
 server = "dragon"
 auto_update = true
 repo = "andreshungbz/homelab"
-run_directory = "trilium"
+run_directory = "stacks/trilium"
 file_paths = ["compose.yaml"]
 
 ##
