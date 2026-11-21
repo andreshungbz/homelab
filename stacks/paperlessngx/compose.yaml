@@ -1,0 +1,92 @@
+services:
+  broker:
+    image: docker.io/library/redis:8
+    container_name: paperless-broker
+    volumes:
+      - ${DATA_DIR}/paperlessngx/redis:/data
+    networks:
+      - paperless_backend
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  db:
+    image: docker.io/library/postgres:18
+    container_name: paperless-db
+    volumes:
+      - ${DATA_DIR}/paperlessngx/db:/var/lib/postgresql
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-paperless}
+      POSTGRES_USER: ${POSTGRES_USER:-paperless}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-paperless}
+    networks:
+      - paperless_backend
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER:-paperless} -d $${POSTGRES_DB:-paperless}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    restart: unless-stopped
+
+  webserver:
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    container_name: paperless-webserver
+    ports:
+      - "127.0.0.1:6221:8000"
+    volumes:
+      - ${DATA_DIR}/paperlessngx/data:/usr/src/paperless/data
+      - ${DATA_DIR}/paperlessngx/media:/usr/src/paperless/media
+      - ${DATA_DIR}/paperlessngx/export:/usr/src/paperless/export
+      - ${DATA_DIR}/paperlessngx/consume:/usr/src/paperless/consume
+    environment:
+      PAPERLESS_REDIS: redis://paperless-broker:6379
+      PAPERLESS_DBHOST: paperless-db
+      PAPERLESS_DBNAME: ${POSTGRES_DB:-paperless}
+      PAPERLESS_DBUSER: ${POSTGRES_USER:-paperless}
+      PAPERLESS_DBPASS: ${POSTGRES_PASSWORD:-paperless}
+      PAPERLESS_TIKA_ENABLED: "1"
+      PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-gotenberg:3000
+      PAPERLESS_TIKA_ENDPOINT: http://paperless-tika:9998
+      PAPERLESS_URL: ${PAPERLESS_URL}
+      PAPERLESS_SECRET_KEY: ${PAPERLESS_SECRET_KEY}
+      PAPERLESS_TIME_ZONE: ${TZ:-America/Belize}
+      USERMAP_UID: ${USERMAP_UID:-1000}
+      USERMAP_GID: ${USERMAP_GID:-1000}
+    depends_on:
+      db:
+        condition: service_healthy
+      broker:
+        condition: service_healthy
+      gotenberg:
+        condition: service_started
+      tika:
+        condition: service_started
+    networks:
+      - paperless_backend
+    restart: unless-stopped
+
+  gotenberg:
+    image: docker.io/gotenberg/gotenberg:8.25
+    container_name: paperless-gotenberg
+    command:
+      - "gotenberg"
+      - "--chromium-disable-javascript=true"
+      - "--chromium-allow-list=file:///tmp/.*"
+    networks:
+      - paperless_backend
+    restart: unless-stopped
+
+  tika:
+    image: docker.io/apache/tika:latest
+    container_name: paperless-tika
+    networks:
+      - paperless_backend
+    restart: unless-stopped
+
+networks:
+  paperless_backend:
+    driver: bridge

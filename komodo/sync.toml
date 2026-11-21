@@ -123,6 +123,19 @@ auto_update = true
 repo = "andreshungbz/homelab"
 run_directory = "stacks/vikunja"
 file_paths = ["compose.yaml"]
+
+##
+
+[[stack]]
+name = "paperlessngx"
+tags = ["tracking"]
+[stack.config]
+server = "dragon"
+auto_update = true
+repo = "andreshungbz/homelab"
+run_directory = "stacks/paperlessngx"
+file_paths = ["compose.yaml"]
+
 ##
 
 [[repo]]
