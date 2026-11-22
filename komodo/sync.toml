@@ -268,13 +268,24 @@ tags = ["system"]
 config.schedule = "Every Sunday at 4:00 am"
 
 [[procedure.config.stage]]
-name = "Clean"
+name = "Containers"
 enabled = true
 executions = [
-  { execution.type = "PruneContainers", execution.params.server = "dragon", enabled = true },
-  { execution.type = "PruneNetworks", execution.params.server = "dragon", enabled = true },
-  { execution.type = "PruneImages", execution.params.server = "dragon", enabled = true },
-  { execution.type = "None", execution.params = {}, enabled = true }
+  { execution.type = "PruneContainers", execution.params.server = "dragon", enabled = true }
+]
+
+[[procedure.config.stage]]
+name = "Networks"
+enabled = true
+executions = [
+  { execution.type = "PruneNetworks", execution.params.server = "dragon", enabled = true }
+]
+
+[[procedure.config.stage]]
+name = "Images"
+enabled = true
+executions = [
+  { execution.type = "PruneImages", execution.params.server = "dragon", enabled = true }
 ]
 
 ##
