@@ -12,3 +12,7 @@ services:
     environment:
       TZ: ${TZ:-America/Belize}
     restart: unless-stopped
+
+networks:
+  default:
+    name: adguardhome-net

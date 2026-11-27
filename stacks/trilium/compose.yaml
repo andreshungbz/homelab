@@ -9,3 +9,7 @@ services:
       TZ: ${TZ:-America/Belize}
     volumes:
       - ${DATA_DIR}/trilium:/home/node/trilium-data
+
+networks:
+  default:
+    name: trilium-net

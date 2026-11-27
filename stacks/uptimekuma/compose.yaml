@@ -10,8 +10,6 @@ services:
     environment:
       TZ: ${TZ:-America/Belize}
       UMASK: "0022"
-    networks:
-      - kuma_network
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3001"]
       interval: 30s
@@ -26,5 +24,5 @@ services:
     restart: unless-stopped
 
 networks:
-  kuma_network:
-    driver: bridge
+  default:
+    name: uptimekuma-net

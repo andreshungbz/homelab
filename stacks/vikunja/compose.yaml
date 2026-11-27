@@ -19,8 +19,6 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    networks:
-      - vikunja_backend
     restart: unless-stopped
 
   db:
@@ -32,8 +30,6 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
-    networks:
-      - vikunja_backend
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -h localhost -U $${POSTGRES_USER}"]
       interval: 5s
@@ -43,5 +39,5 @@ services:
     restart: unless-stopped
 
 networks:
-  vikunja_backend:
-    driver: bridge
+  default:
+    name: vikunja-net

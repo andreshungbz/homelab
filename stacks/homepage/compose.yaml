@@ -13,3 +13,7 @@ services:
       - ${DATA_DIR}/homepage/config:/app/config
       - ${DATA_DIR}/homepage/images:/app/public/images
       - /var/run/docker.sock:/var/run/docker.sock:ro
+
+networks:
+  default:
+    name: homepage-net

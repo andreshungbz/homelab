@@ -4,8 +4,6 @@ services:
     container_name: paperless-broker
     volumes:
       - ${DATA_DIR}/paperlessngx/redis:/data
-    networks:
-      - paperless_backend
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
@@ -22,8 +20,6 @@ services:
       POSTGRES_DB: ${POSTGRES_DB:-paperless}
       POSTGRES_USER: ${POSTGRES_USER:-paperless}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-paperless}
-    networks:
-      - paperless_backend
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER:-paperless} -d $${POSTGRES_DB:-paperless}"]
       interval: 10s
@@ -65,8 +61,6 @@ services:
         condition: service_started
       tika:
         condition: service_started
-    networks:
-      - paperless_backend
     restart: unless-stopped
 
   gotenberg:
@@ -76,17 +70,13 @@ services:
       - "gotenberg"
       - "--chromium-disable-javascript=true"
       - "--chromium-allow-list=file:///tmp/.*"
-    networks:
-      - paperless_backend
     restart: unless-stopped
 
   tika:
     image: docker.io/apache/tika:latest
     container_name: paperless-tika
-    networks:
-      - paperless_backend
     restart: unless-stopped
 
 networks:
-  paperless_backend:
-    driver: bridge
+  default:
+    name: paperless-net

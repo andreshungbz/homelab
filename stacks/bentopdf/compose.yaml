@@ -10,4 +10,7 @@ services:
       timeout: 10s
       retries: 3
     restart: unless-stopped
-    
+
+networks:
+  default:
+    name: bentopdf-net
