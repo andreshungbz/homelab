@@ -1,0 +1,114 @@
+services:
+  jellyfin:
+    image: docker.io/jellyfin/jellyfin:latest
+    container_name: jellyfin
+    ports:
+      - "127.0.0.1:6224:8096"
+    volumes:
+      - ${DATA_DIR}/mediaserver/jellyfin/config:/config
+      - ${DATA_DIR}/mediaserver/jellyfin/cache:/cache
+      - ${MEDIA_DIR}/library:/data/library:ro
+    devices:
+      - /dev/dri:/dev/dri
+    environment:
+      - TZ=${TZ:-America/Belize}
+    restart: unless-stopped
+
+  seerr:
+    image: ghcr.io/seerr-team/seerr:latest
+    container_name: seerr
+    ports:
+      - "127.0.0.1:6225:5055"
+    volumes:
+      - ${DATA_DIR}/mediaserver/seerr:/app/config
+    environment:
+      - LOG_LEVEL=info
+      - TZ=${TZ:-America/Belize}
+    restart: unless-stopped
+
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    ports:
+      - "127.0.0.1:6226:7878"
+    volumes:
+      - ${DATA_DIR}/mediaserver/radarr:/config
+      - ${MEDIA_DIR}:/data
+    environment:
+      - PUID=${USERMAP_UID:-1000}
+      - PGID=${USERMAP_GID:-1000}
+      - TZ=${TZ:-America/Belize}
+    restart: unless-stopped
+
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    ports:
+      - "127.0.0.1:6227:8989"
+    volumes:
+      - ${DATA_DIR}/mediaserver/sonarr:/config
+      - ${MEDIA_DIR}:/data
+    environment:
+      - PUID=${USERMAP_UID:-1000}
+      - PGID=${USERMAP_GID:-1000}
+      - TZ=${TZ:-America/Belize}
+    restart: unless-stopped
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    ports:
+      - "127.0.0.1:6228:9696"
+    volumes:
+      - ${DATA_DIR}/mediaserver/prowlarr:/config
+    environment:
+      - PUID=${USERMAP_UID:-1000}
+      - PGID=${USERMAP_GID:-1000}
+      - TZ=${TZ:-America/Belize}
+    restart: unless-stopped
+
+  byparr:
+    image: ghcr.io/thephaseless/byparr:latest
+    container_name: byparr
+    restart: unless-stopped
+    shm_size: "1gb"
+    tmpfs:
+      - /tmp:exec,mode=1777,size=1G
+    environment:
+      - TZ=${TZ}
+      - BROWSER_TIMEZONE=${TZ}
+
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    ports:
+      - "127.0.0.1:6229:8080"
+      - "6881:6881"
+      - "6881:6881/udp"
+    volumes:
+      - ${DATA_DIR}/mediaserver/qbittorrent:/config
+      - ${MEDIA_DIR}/torrents:/data/torrents
+    environment:
+      - PUID=${USERMAP_UID:-1000}
+      - PGID=${USERMAP_GID:-1000}
+      - TZ=${TZ:-America/Belize}
+      - WEBUI_PORT=8080
+    restart: unless-stopped
+
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    ports:
+      - "127.0.0.1:6230:6767"
+    volumes:
+      - ${DATA_DIR}/mediaserver/bazarr:/config
+      - ${MEDIA_DIR}/library:/data/library
+    environment:
+      - PUID=${USERMAP_UID:-1000}
+      - PGID=${USERMAP_GID:-1000}
+      - TZ=${TZ:-America/Belize}
+    restart: unless-stopped
+
+networks:
+  default:
+    name: mediaserver-net

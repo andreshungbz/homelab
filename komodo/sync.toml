@@ -10,10 +10,7 @@ name = "actualbudget"
 tags = ["app"]
 [stack.config]
 server = "dragon"
-links = [
-  "https://budget.coydog-matrix.ts.net",
-  "https://actualbudget.org"
-]
+links = ["https://budget.coydog-matrix.ts.net", "https://actualbudget.org"]
 auto_update = true
 linked_repo = "homelab"
 run_directory = "stacks/actualbudget"
@@ -28,7 +25,7 @@ tags = ["service"]
 server = "dragon"
 links = [
   "https://dns.coydog-matrix.ts.net",
-  "https://adguard.com/en/adguard-home/overview.html"
+  "https://adguard.com/en/adguard-home/overview.html",
 ]
 auto_update = true
 linked_repo = "homelab"
@@ -42,10 +39,7 @@ name = "bentopdf"
 tags = ["tool"]
 [stack.config]
 server = "dragon"
-links = [
-  "https://pdf.coydog-matrix.ts.net",
-  "https://www.bentopdf.com"
-]
+links = ["https://pdf.coydog-matrix.ts.net", "https://www.bentopdf.com"]
 auto_update = true
 linked_repo = "homelab"
 run_directory = "stacks/bentopdf"
@@ -60,7 +54,7 @@ tags = ["service"]
 server = "dragon"
 links = [
   "https://monitor.coydog-matrix.ts.net",
-  "https://nicolargo.github.io/glances"
+  "https://nicolargo.github.io/glances",
 ]
 auto_update = true
 linked_repo = "homelab"
@@ -74,10 +68,7 @@ name = "homepage"
 tags = ["service"]
 [stack.config]
 server = "dragon"
-links = [
-  "https://dashboard.coydog-matrix.ts.net",
-  "https://gethomepage.dev"
-]
+links = ["https://dashboard.coydog-matrix.ts.net", "https://gethomepage.dev"]
 auto_update = true
 linked_repo = "homelab"
 run_directory = "stacks/homepage"
@@ -90,10 +81,7 @@ name = "karakeep"
 tags = ["app"]
 [stack.config]
 server = "dragon"
-links = [
-  "https://stash.coydog-matrix.ts.net",
-  "https://karakeep.com"
-]
+links = ["https://stash.coydog-matrix.ts.net", "https://karakeep.com"]
 auto_update = true
 linked_repo = "homelab"
 run_directory = "stacks/karakeep"
@@ -106,10 +94,7 @@ name = "miniflux"
 tags = ["app"]
 [stack.config]
 server = "dragon"
-links = [
-  "https://rss.coydog-matrix.ts.net",
-  "https://miniflux.app"
-]
+links = ["https://rss.coydog-matrix.ts.net", "https://miniflux.app"]
 auto_update = true
 linked_repo = "homelab"
 run_directory = "stacks/miniflux"
@@ -135,7 +120,7 @@ tags = ["app"]
 server = "dragon"
 links = [
   "https://papers.coydog-matrix.ts.net",
-  "https://docs.paperless-ngx.com"
+  "https://docs.paperless-ngx.com",
 ]
 auto_update = true
 linked_repo = "homelab"
@@ -149,10 +134,7 @@ name = "termix"
 tags = ["service"]
 [stack.config]
 server = "dragon"
-links = [
-  "https://terminal.coydog-matrix.ts.net",
-  "https://termix.site"
-]
+links = ["https://terminal.coydog-matrix.ts.net", "https://termix.site"]
 auto_update = true
 linked_repo = "homelab"
 run_directory = "stacks/termix"
@@ -167,7 +149,7 @@ tags = ["app"]
 server = "dragon"
 links = [
   "https://travel.coydog-matrix.ts.net",
-  "https://github.com/liketrek/TREK"
+  "https://github.com/liketrek/TREK",
 ]
 auto_update = true
 linked_repo = "homelab"
@@ -181,10 +163,7 @@ name = "trilium"
 tags = ["app"]
 [stack.config]
 server = "dragon"
-links = [
-  "https://knowledge.coydog-matrix.ts.net",
-  "https://triliumnotes.org"
-]
+links = ["https://knowledge.coydog-matrix.ts.net", "https://triliumnotes.org"]
 auto_update = true
 linked_repo = "homelab"
 run_directory = "stacks/trilium"
@@ -197,10 +176,7 @@ name = "uptimekuma"
 tags = ["service"]
 [stack.config]
 server = "dragon"
-links = [
-  "https://status.coydog-matrix.ts.net",
-  "https://uptimekuma.co"
-]
+links = ["https://status.coydog-matrix.ts.net", "https://uptimekuma.co"]
 auto_update = true
 linked_repo = "homelab"
 run_directory = "stacks/uptimekuma"
@@ -213,13 +189,31 @@ name = "vikunja"
 tags = ["app"]
 [stack.config]
 server = "dragon"
-links = [
-  "https://todo.coydog-matrix.ts.net",
-  "https://vikunja.io"
-]
+links = ["https://todo.coydog-matrix.ts.net", "https://vikunja.io"]
 auto_update = true
 linked_repo = "homelab"
 run_directory = "stacks/vikunja"
+file_paths = ["compose.yaml"]
+
+##
+
+[[stack]]
+name = "mediaserver"
+tags = ["app", "media"]
+[stack.config]
+server = "dragon"
+links = [
+  "https://watch.coydog-matrix.ts.net",
+  "https://torrent.coydog-matrix.ts.net",
+  "https://seerr.coydog-matrix.ts.net",
+  "https://prowlarr.coydog-matrix.ts.net",
+  "https://bazarr.coydog-matrix.ts.net",
+  "https://radarr.coydog-matrix.ts.net",
+  "https://sonarr.coydog-matrix.ts.net",
+]
+auto_update = true
+linked_repo = "homelab"
+run_directory = "stacks/mediaserver"
 file_paths = ["compose.yaml"]
 
 ##
@@ -242,7 +236,7 @@ config.schedule = "Every Sunday at 2:00 am"
 name = "Backup"
 enabled = true
 executions = [
-  { execution.type = "BackupCoreDatabase", execution.params = {}, enabled = true }
+  { execution.type = "BackupCoreDatabase", execution.params = {}, enabled = true },
 ]
 
 ##
@@ -257,7 +251,7 @@ config.schedule = "Every day at 03:00"
 name = "Update"
 enabled = true
 executions = [
-  { execution.type = "GlobalAutoUpdate", execution.params.skip_auto_update = false, enabled = true }
+  { execution.type = "GlobalAutoUpdate", execution.params.skip_auto_update = false, enabled = true },
 ]
 
 ##
@@ -271,21 +265,21 @@ config.schedule = "Every Sunday at 4:00 am"
 name = "Containers"
 enabled = true
 executions = [
-  { execution.type = "PruneContainers", execution.params.server = "dragon", enabled = true }
+  { execution.type = "PruneContainers", execution.params.server = "dragon", enabled = true },
 ]
 
 [[procedure.config.stage]]
 name = "Networks"
 enabled = true
 executions = [
-  { execution.type = "PruneNetworks", execution.params.server = "dragon", enabled = true }
+  { execution.type = "PruneNetworks", execution.params.server = "dragon", enabled = true },
 ]
 
 [[procedure.config.stage]]
 name = "Images"
 enabled = true
 executions = [
-  { execution.type = "PruneImages", execution.params.server = "dragon", enabled = true }
+  { execution.type = "PruneImages", execution.params.server = "dragon", enabled = true },
 ]
 
 ##
@@ -300,7 +294,7 @@ config.schedule = "Every day at 06:00"
 name = "Rotate"
 enabled = true
 executions = [
-  { execution.type = "RotateAllServerKeys", execution.params = {}, enabled = true }
+  { execution.type = "RotateAllServerKeys", execution.params = {}, enabled = true },
 ]
 
 ##
